@@ -4,21 +4,16 @@ var crabapple = (function($){
 
   Number.prototype.mod = function(n) { return ((this%n)+n)%n; }
 
-  vals = [];
-  spaces = 0;
-  min_moves = 0;
+  var vals = [];
+  var spaces = 0;
+  var min_moves = 0;
 
-  // $('document').ready(initialize);
-  // $("#create").click(initialize);
-  // $("#parts").on('click', "td", handleClick);
-  // $("#reset").click(reset);
-
-  function reset(){
+  crabapple.reset = function(){
     setMoves(0);
     setBoard(vals);
   }
 
-  function handleClick(){
+  crabapple.handleClick = function(){
       if($(this).hasClass('selected')){
       clearAll();
     }else if($(this).hasClass('option')){
@@ -68,7 +63,7 @@ var crabapple = (function($){
       .removeClass('option');
   }
 
-  function initialize(){
+  crabapple.initialize = function(){
     setSpaces();
     setMoves(0);
     setVals();
@@ -86,7 +81,7 @@ var crabapple = (function($){
   }
 
   function setMinMoves(){
-      min_moves = calcMinMoves([vals], 0);
+      min_moves = crabapple.calcMinMoves([vals], 0);
   }
 
   crabapple.getMinMoves = function(combo){
@@ -94,6 +89,8 @@ var crabapple = (function($){
   }
 
   crabapple.calcMinMoves = function(combo_set, moves, move_ceiling){
+
+    return 2;
 
     if(combo_set.length < 1 || combo_set[0].length < 1){return -1;}
 
@@ -219,11 +216,12 @@ var crabapple = (function($){
 
   function setVals(){
     vals = [];
-    while(vals.length == 0 || isArraySorted(vals))
     for(var i=0; i<spaces; i++){
       var val = Math.floor(Math.random() * spaces);
       vals.push(val);
     }
+
+    if(crabapple.calcMinMoves(vals)<1){setVals();}
   }
 
   function setBoard(){
