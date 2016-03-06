@@ -22,7 +22,6 @@
     <button id="reset">Reset</button>
 </body>
 <script src="/js/jquery-2.2.1.min.js"></script>
-<script src="/js/combo_engine.js"></script>
 <script src="/js/crabapple.js"></script>
 <script src="/js/test_runner.js"></script>
 <script src="/js/tests.js"></script>
